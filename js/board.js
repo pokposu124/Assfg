@@ -1,6 +1,3 @@
-// ===========================
-// Board State
-// ===========================
 let currentBoardType = '';
 let currentBoardEl = '';
 let currentCountEl = '';
@@ -8,16 +5,13 @@ let currentFilter = 'all';
 let selectedFile = null;
 let currentViewDoc = null;
 
-// ===========================
-// Seed Data (pre-populated entries without PDF — user uploads PDF separately)
-// ===========================
 const SEED_DATA = {
   letter: [
     {
       id: 'seed-letter-2026q1',
       title: '나무늘보 투자조합 2026년 1분기 주주서한',
       date: '2026-03-29',
-      summary: 'YTD -1.8% (S&P500 -7.14% 대비 초과), 웨스트 파마슈티컬 투자 배경, 이란-미국 충돌의 포트폴리오 영향 분석',
+      summary: 'YTD -1.8% (S&P500 -7.14% 대비 초과), 웨스트 파마슈티컈 투자 배경, 이란-미국 충돌의 포트폴리오 영향 분석',
       category: '',
       fileName: null,
       fileSize: null,
@@ -42,29 +36,19 @@ const SEED_DATA = {
   ]
 };
 
-// ===========================
-// Init
-// ===========================
 function initBoard(type, boardElId, countElId) {
   currentBoardType = type;
   currentBoardEl = boardElId;
   currentCountEl = countElId;
-
-  // Initialize seed data once
   initializeSeedData(type);
-
   const dateInput = document.getElementById('uploadDate');
-  if (dateInput) {
-    dateInput.value = new Date().toISOString().split('T')[0];
-  }
-
+  if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
   renderBoard();
 }
 
 function initializeSeedData(type) {
   const seedKey = getStorageKey(type) + '_seeded';
   if (localStorage.getItem(seedKey)) return;
-
   const existing = getDocs(type);
   const seeds = SEED_DATA[type] || [];
   const merged = [...seeds, ...existing];
@@ -72,63 +56,38 @@ function initializeSeedData(type) {
   localStorage.setItem(seedKey, '1');
 }
 
-// ===========================
-// Storage
-// ===========================
-function getStorageKey(type) {
-  return `portfolio_${type}_docs`;
-}
+function getStorageKey(type) { return `portfolio_${type}_docs`; }
 
 function getDocs(type) {
   try {
     const raw = localStorage.getItem(getStorageKey(type));
     return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
+  } catch { return []; }
 }
 
 function saveDocs(type, docs) {
   try {
     localStorage.setItem(getStorageKey(type), JSON.stringify(docs));
   } catch (e) {
-    if (e.name === 'QuotaExceededError') {
-      showToast('저장 공간이 부족합니다. 일부 파일을 삭제해주세요.', 'error');
-    }
+    if (e.name === 'QuotaExceededError') showToast('저장 공간이 부족합니다.', 'error');
   }
 }
 
-// ===========================
-// Render Board
-// ===========================
 function renderBoard(filter) {
   if (filter !== undefined) currentFilter = filter;
-
   const boardEl = document.getElementById(currentBoardEl);
   const countEl = document.getElementById(currentCountEl);
   if (!boardEl) return;
-
   let docs = getDocs(currentBoardType);
   docs.sort((a, b) => new Date(b.date) - new Date(a.date));
-
   let filtered = docs;
-  if (currentFilter !== 'all') {
-    filtered = docs.filter(d => d.date && d.date.startsWith(currentFilter));
-  }
-
+  if (currentFilter !== 'all') filtered = docs.filter(d => d.date && d.date.startsWith(currentFilter));
   if (countEl) countEl.textContent = filtered.length;
-
   if (filtered.length === 0) {
     const emptyLabel = currentBoardType === 'letter' ? '주주서한' : '레포트';
-    boardEl.innerHTML = `
-      <div class="board-empty">
-        <div class="board-empty-icon">${currentBoardType === 'letter' ? '✉️' : '📋'}</div>
-        <div class="board-empty-title">아직 등록된 ${emptyLabel}이 없습니다</div>
-        <div class="board-empty-desc">우측 상단의 업로드 버튼을 눌러 PDF 파일을 추가하세요</div>
-      </div>`;
+    boardEl.innerHTML = `<div class="board-empty"><div class="board-empty-icon">${currentBoardType === 'letter' ? '✉️' : '📋'}</div><div class="board-empty-title">아직 등록된 ${emptyLabel}이 없습니다</div><div class="board-empty-desc">우측 상단의 업로드 버튼을 눌러 PDF 파일을 추가하세요</div></div>`;
     return;
   }
-
   boardEl.innerHTML = filtered.map(doc => buildDocItem(doc)).join('');
 }
 
@@ -137,15 +96,12 @@ function buildDocItem(doc) {
   const icon = isLetter ? '✉️' : '📊';
   const dateStr = formatDateKo(doc.date);
   const hasPDF = !!doc.fileData;
-
   const categoryBadge = doc.category
     ? `<span style="background: rgba(61,153,112,0.1); color: var(--blue-light); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">${escapeHtml(doc.category)}</span>`
     : '';
-
   const pdfBadge = !hasPDF
     ? `<span style="background: rgba(251,191,36,0.1); color: var(--yellow); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; border: 1px solid rgba(251,191,36,0.2);">PDF 업로드 필요</span>`
     : '';
-
   return `
     <div class="board-item" onclick="${hasPDF ? `viewDocument('${doc.id}')` : `promptUploadPDF('${doc.id}')`}">
       <div class="board-item-left">
@@ -170,7 +126,7 @@ function buildDocItem(doc) {
              </button>`
           : `<button class="btn btn-secondary btn-sm" onclick="promptUploadPDF('${doc.id}')">
                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-               PDF 첨부
+               PDF 쳊부
              </button>`
         }
         <button class="btn btn-ghost btn-sm btn-icon" onclick="deleteDocument('${doc.id}')" title="삭제">
@@ -180,9 +136,6 @@ function buildDocItem(doc) {
     </div>`;
 }
 
-// ===========================
-// Attach PDF to existing seed entry
-// ===========================
 let attachTargetId = null;
 
 function promptUploadPDF(id) {
@@ -190,23 +143,14 @@ function promptUploadPDF(id) {
   const docs = getDocs(currentBoardType);
   const doc = docs.find(d => d.id === id);
   if (!doc) return;
-
   openUploadModal();
-
-  // Pre-fill title/date from seed
   const titleInput = document.getElementById('uploadTitle');
   const dateInput = document.getElementById('uploadDate');
   if (titleInput) titleInput.value = doc.title;
   if (dateInput) dateInput.value = doc.date;
-  if (doc.category) {
-    const catInput = document.getElementById('uploadCategory');
-    if (catInput) catInput.value = doc.category;
-  }
+  if (doc.category) { const catInput = document.getElementById('uploadCategory'); if (catInput) catInput.value = doc.category; }
 }
 
-// ===========================
-// Filter
-// ===========================
 function filterDocs(year, btn) {
   currentFilter = year;
   document.querySelectorAll('.chart-toggle button').forEach(b => b.classList.remove('active'));
@@ -214,9 +158,6 @@ function filterDocs(year, btn) {
   renderBoard();
 }
 
-// ===========================
-// Upload Modal
-// ===========================
 function openUploadModal() {
   attachTargetId = null;
   selectedFile = null;
@@ -229,7 +170,6 @@ function openUploadModal() {
   if (fileInput) fileInput.value = '';
   const fileInfo = document.getElementById('fileSelectedInfo');
   if (fileInfo) fileInfo.classList.add('hidden');
-
   document.getElementById('uploadModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -239,7 +179,6 @@ function closeUploadModal() {
   document.body.style.overflow = '';
   selectedFile = null;
   attachTargetId = null;
-  // Reset form
   const titleInput = document.getElementById('uploadTitle');
   if (titleInput) titleInput.value = '';
   const fileInput = document.getElementById('fileInput');
@@ -248,90 +187,48 @@ function closeUploadModal() {
   if (fileInfo) fileInfo.classList.add('hidden');
 }
 
-function handleOverlayClick(event) {
-  if (event.target === event.currentTarget) closeUploadModal();
-}
+function handleOverlayClick(event) { if (event.target === event.currentTarget) closeUploadModal(); }
 
-// ===========================
-// Drag & Drop
-// ===========================
-function handleDragOver(event) {
-  event.preventDefault();
-  document.getElementById('dropzone').classList.add('dragover');
-}
-
-function handleDragLeave(event) {
-  document.getElementById('dropzone').classList.remove('dragover');
-}
-
+function handleDragOver(event) { event.preventDefault(); document.getElementById('dropzone').classList.add('dragover'); }
+function handleDragLeave(event) { document.getElementById('dropzone').classList.remove('dragover'); }
 function handleDrop(event, type) {
   event.preventDefault();
   document.getElementById('dropzone').classList.remove('dragover');
   const files = event.dataTransfer.files;
   if (files.length > 0) processFile(files[0], type);
 }
-
 function handleFileSelect(event, type) {
   const files = event.target.files;
   if (files.length > 0) processFile(files[0], type);
 }
 
 function processFile(file, type) {
-  if (file.type !== 'application/pdf') {
-    showToast('PDF 파일만 업로드할 수 있습니다.', 'error');
-    return;
-  }
-  const maxSize = 50 * 1024 * 1024;
-  if (file.size > maxSize) {
-    showToast('파일 크기는 50MB를 초과할 수 없습니다.', 'error');
-    return;
-  }
+  if (file.type !== 'application/pdf') { showToast('PDF 파일만 업로드할 수 있습니다.', 'error'); return; }
+  if (file.size > 50 * 1024 * 1024) { showToast('파일 크기는 50MB를 초과할 수 없습니다.', 'error'); return; }
   selectedFile = file;
-
   const nameEl = document.getElementById('fileSelectedName');
   const infoEl = document.getElementById('fileSelectedInfo');
   if (nameEl) nameEl.textContent = `${file.name} (${formatFileSize(file.size)})`;
   if (infoEl) infoEl.classList.remove('hidden');
-
   const titleInput = document.getElementById('uploadTitle');
-  if (titleInput && !titleInput.value) {
-    titleInput.value = file.name.replace('.pdf', '').replace(/_/g, ' ').replace(/-/g, ' ');
-  }
+  if (titleInput && !titleInput.value) titleInput.value = file.name.replace('.pdf', '').replace(/_/g, ' ').replace(/-/g, ' ');
 }
 
-// ===========================
-// Submit Upload
-// ===========================
 function submitUpload(type) {
   const title = document.getElementById('uploadTitle').value.trim();
   const date = document.getElementById('uploadDate').value;
   const summary = document.getElementById('uploadSummary')?.value.trim() || '';
   const category = document.getElementById('uploadCategory')?.value || '';
-
   if (!title) { showToast('제목을 입력해주세요.', 'error'); return; }
-  if (!date)  { showToast('날짜를 선택해주세요.', 'error'); return; }
+  if (!date) { showToast('날짜를 선택해주세요.', 'error'); return; }
   if (!selectedFile) { showToast('PDF 파일을 선택해주세요.', 'error'); return; }
-
   const reader = new FileReader();
   reader.onload = function(e) {
     const docs = getDocs(type);
-
     if (attachTargetId) {
-      // Attach PDF to existing seed entry
       const idx = docs.findIndex(d => d.id === attachTargetId);
       if (idx !== -1) {
-        docs[idx] = {
-          ...docs[idx],
-          title,
-          date,
-          summary: summary || docs[idx].summary,
-          category: category || docs[idx].category,
-          fileName: selectedFile.name,
-          fileSize: selectedFile.size,
-          fileData: e.target.result,
-          isSeed: false,
-          uploadedAt: new Date().toISOString(),
-        };
+        docs[idx] = { ...docs[idx], title, date, summary: summary || docs[idx].summary, category: category || docs[idx].category, fileName: selectedFile.name, fileSize: selectedFile.size, fileData: e.target.result, isSeed: false, uploadedAt: new Date().toISOString() };
         saveDocs(type, docs);
         closeUploadModal();
         renderBoard();
@@ -339,39 +236,21 @@ function submitUpload(type) {
         return;
       }
     }
-
-    // New document
-    const doc = {
-      id: generateId(),
-      title, date, summary, category,
-      fileName: selectedFile.name,
-      fileSize: selectedFile.size,
-      fileData: e.target.result,
-      isSeed: false,
-      uploadedAt: new Date().toISOString(),
-    };
+    const doc = { id: generateId(), title, date, summary, category, fileName: selectedFile.name, fileSize: selectedFile.size, fileData: e.target.result, isSeed: false, uploadedAt: new Date().toISOString() };
     docs.push(doc);
     saveDocs(type, docs);
     closeUploadModal();
     renderBoard();
     showToast('파일이 성공적으로 업로드되었습니다.');
   };
-
   reader.onerror = () => showToast('파일 읽기에 실패했습니다.', 'error');
   reader.readAsDataURL(selectedFile);
 }
 
-// ===========================
-// View Document
-// ===========================
 function viewDocument(id) {
   const docs = getDocs(currentBoardType);
   const doc = docs.find(d => d.id === id);
-  if (!doc || !doc.fileData) {
-    showToast('PDF를 먼저 업로드해주세요.', 'error');
-    return;
-  }
-
+  if (!doc || !doc.fileData) { showToast('PDF를 먼저 업로드해주세요.', 'error'); return; }
   currentViewDoc = doc;
   document.getElementById('viewerTitle').textContent = doc.title;
   document.getElementById('pdfViewer').src = doc.fileData;
@@ -386,9 +265,7 @@ function closeViewerModal() {
   currentViewDoc = null;
 }
 
-function handleViewerOverlayClick(event) {
-  if (event.target === event.currentTarget) closeViewerModal();
-}
+function handleViewerOverlayClick(event) { if (event.target === event.currentTarget) closeViewerModal(); }
 
 function downloadCurrentPDF() {
   if (!currentViewDoc) return;
@@ -398,28 +275,15 @@ function downloadCurrentPDF() {
   a.click();
 }
 
-// ===========================
-// Delete Document
-// ===========================
 function deleteDocument(id) {
   if (!confirm('이 문서를 삭제하시겠습니까?')) return;
-
   const docs = getDocs(currentBoardType);
   const filtered = docs.filter(d => d.id !== id);
   saveDocs(currentBoardType, filtered);
-
-  // Reset seed flag if all seed docs are deleted
-  if (!filtered.some(d => d.isSeed)) {
-    // allow re-seed on next visit if desired (optional)
-  }
-
   renderBoard();
   showToast('문서가 삭제되었습니다.');
 }
 
-// ===========================
-// Keyboard Shortcuts
-// ===========================
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     const viewer = document.getElementById('viewerModal');
@@ -429,9 +293,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ===========================
-// Utility
-// ===========================
 function escapeHtml(str) {
   if (!str) return '';
   const div = document.createElement('div');
