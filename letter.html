@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주주서한 — 가치투자조합 1호</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">V</div>
+      <span>가치투자조합 1호</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">홈</a>
+      <a href="performance.html" class="nav-link">운용결과</a>
+      <a href="letter.html" class="nav-link active">주주서한</a>
+      <a href="report.html" class="nav-link">레포트</a>
+    </div>
+    <div class="nav-badge">운용 중</div>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-inner">
+        <div>
+          <div class="page-tag">Shareholder Letters</div>
+          <h1 class="page-title">주주서한</h1>
+          <p class="page-desc">분기별 운용 경과와 투자 아이디어, 시장 환경에 대한 운용역의 생각을 담은 서한입니다.</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="btn btn-primary" onclick="openUploadModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            서한 업로드
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+
+      <!-- Filter Bar -->
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+        <div class="chart-toggle">
+          <button class="active" onclick="filterDocs('all', this)">전체</button>
+          <button onclick="filterDocs('2025', this)">2025</button>
+          <button onclick="filterDocs('2024', this)">2024</button>
+          <button onclick="filterDocs('2023', this)">2023</button>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted);">
+          총 <span id="docCount">0</span>건
+        </div>
+      </div>
+
+      <!-- Board List -->
+      <div id="letterBoard" class="board-list"></div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="nav-logo-icon" style="width:24px; height:24px; font-size:12px;">V</div>
+            가치투자조합 1호
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="performance.html" class="footer-link">운용결과</a>
+          <a href="letter.html" class="footer-link">주주서한</a>
+          <a href="report.html" class="footer-link">레포트</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Upload Modal -->
+<div class="modal-overlay" id="uploadModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">주주서한 업로드</div>
+      <button class="modal-close" onclick="closeUploadModal()">✕</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">제목 *</label>
+      <input type="text" class="form-input" id="uploadTitle" placeholder="예: 2025년 2분기 주주서한">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">게시 날짜 *</label>
+      <input type="date" class="form-input" id="uploadDate">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">PDF 파일 *</label>
+      <div class="dropzone" id="dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'letter')">
+        <input type="file" accept=".pdf" id="fileInput" onchange="handleFileSelect(event, 'letter')">
+        <div class="dropzone-icon">📄</div>
+        <div class="dropzone-title">PDF 파일을 드래그하거나 클릭하여 업로드</div>
+        <div class="dropzone-desc">최대 50MB · PDF 파일만 지원</div>
+        <div id="fileSelectedInfo" class="dropzone-file-selected hidden">
+          <div class="dropzone-file-icon">✅</div>
+          <div class="dropzone-file-name" id="fileSelectedName"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">요약 (선택)</label>
+      <input type="text" class="form-input" id="uploadSummary" placeholder="이번 서한의 주요 내용을 한 줄로 요약하세요">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="closeUploadModal()">취소</button>
+      <button class="btn btn-primary" onclick="submitUpload('letter')">업로드</button>
+    </div>
+  </div>
+</div>
+
+<!-- PDF Viewer Modal -->
+<div class="modal-overlay" id="viewerModal" onclick="handleViewerOverlayClick(event)">
+  <div class="modal modal-lg" style="padding: 24px; display: flex; flex-direction: column; height: 90vh;">
+    <div class="modal-header">
+      <div class="modal-title" id="viewerTitle">주주서한</div>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn btn-secondary btn-sm" id="downloadBtn" onclick="downloadCurrentPDF()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          다운로드
+        </button>
+        <button class="modal-close" onclick="closeViewerModal()">✕</button>
+      </div>
+    </div>
+    <iframe class="pdf-viewer" id="pdfViewer" src=""></iframe>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+<script src="js/board.js"></script>
+<script>
+  initBoard('letter', 'letterBoard', 'docCount');
+</script>
+</body>
+</html>

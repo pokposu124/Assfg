@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가치투자조합 1호 — Investment Portfolio</title>
+  <meta name="description" content="장기적 가치 창출을 추구하는 투자조합입니다.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">V</div>
+      <span>가치투자조합 1호</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">홈</a>
+      <a href="performance.html" class="nav-link">운용결과</a>
+      <a href="letter.html" class="nav-link">주주서한</a>
+      <a href="report.html" class="nav-link">레포트</a>
+    </div>
+    <div class="nav-badge">운용 중</div>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+        투자조합 소개
+      </div>
+      <h1 class="hero-title">
+        내재가치에 집중하는<br>
+        <span>장기 가치 투자</span>
+      </h1>
+      <p class="hero-desc">
+        가치투자조합 1호는 시장의 단기 변동성에 흔들리지 않고, 기업의 본질적 가치에 기반한 투자를 통해
+        조합원의 자산을 장기적으로 불려나가는 것을 목표로 합니다.
+      </p>
+
+      <!-- Key Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">설정일</div>
+          <div class="stat-value" style="font-size:20px;">2022. 10. 01</div>
+          <div class="stat-sub">운용 시작일</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">누적 수익률</div>
+          <div class="stat-value positive">+68.4%</div>
+          <div class="stat-sub">설정일 기준</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">YTD 수익률</div>
+          <div class="stat-value positive">+14.1%</div>
+          <div class="stat-sub">2025년 기준</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">이번 분기 수익률</div>
+          <div class="stat-value positive">+5.6%</div>
+          <div class="stat-sub">2025년 2분기</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">운용 규모 (AUM)</div>
+          <div class="stat-value" style="font-size:20px;">비공개</div>
+          <div class="stat-sub">조합원 한정 공개</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2" style="gap: 28px; align-items: start;">
+
+        <!-- Quarter Highlight + Portfolio Chart -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+
+          <!-- Current Quarter Highlight -->
+          <div class="quarter-highlight">
+            <div class="quarter-label">2025년 2분기 수익률</div>
+            <div class="quarter-return">+5.6%</div>
+            <div class="quarter-period">2025. 04. 01 — 2025. 06. 30</div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(79,126,247,0.15); display: flex; gap: 24px;">
+              <div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">누적 수익</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--green);">+68.4%</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">벤치마크 대비</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--blue-light);">+31.2%p</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">운용 기간</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--text);">33개월</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini Performance Chart -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">분기별 수익률 추이</div>
+                <div class="card-subtitle">설정 이후 분기별 수익률</div>
+              </div>
+              <a href="performance.html" class="btn btn-ghost btn-sm">
+                전체 보기
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="chart-container" style="height: 180px;">
+              <canvas id="miniChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Portfolio Allocation -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Donut Chart -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">투자 비중</div>
+                <div class="card-subtitle">2025년 6월 말 기준</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 24px;">
+              <div class="chart-container" style="height: 180px; width: 180px; flex-shrink: 0;">
+                <canvas id="donutChart"></canvas>
+              </div>
+              <div class="allocation-list" style="flex: 1;">
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #4f7ef7;"></div>
+                    <div class="allocation-name">국내 주식</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 38%; background: #4f7ef7;"></div>
+                    </div>
+                    <div class="allocation-pct">38%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #a78bfa;"></div>
+                    <div class="allocation-name">해외 주식</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 43%; background: #a78bfa;"></div>
+                    </div>
+                    <div class="allocation-pct">43%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #34d399;"></div>
+                    <div class="allocation-name">현금성 자산</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 12%; background: #34d399;"></div>
+                    </div>
+                    <div class="allocation-pct">12%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #fbbf24;"></div>
+                    <div class="allocation-name">기타</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 7%; background: #fbbf24;"></div>
+                    </div>
+                    <div class="allocation-pct">7%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Holdings -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">주요 보유 종목</div>
+                <div class="card-subtitle">상위 5개 종목 (비중 순)</div>
+              </div>
+            </div>
+            <table class="perf-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>종목명</th>
+                  <th>비중</th>
+                  <th>손익</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="neutral">1</td>
+                  <td class="font-medium">A사 (비공개)</td>
+                  <td>14.2%</td>
+                  <td class="positive">+42.1%</td>
+                </tr>
+                <tr>
+                  <td class="neutral">2</td>
+                  <td class="font-medium">B사 (비공개)</td>
+                  <td>11.8%</td>
+                  <td class="positive">+28.6%</td>
+                </tr>
+                <tr>
+                  <td class="neutral">3</td>
+                  <td class="font-medium">C사 (비공개)</td>
+                  <td>9.4%</td>
+                  <td class="negative">-3.2%</td>
+                </tr>
+                <tr>
+                  <td class="neutral">4</td>
+                  <td class="font-medium">D사 (비공개)</td>
+                  <td>8.7%</td>
+                  <td class="positive">+61.3%</td>
+                </tr>
+                <tr>
+                  <td class="neutral">5</td>
+                  <td class="font-medium">E사 (비공개)</td>
+                  <td>7.1%</td>
+                  <td class="positive">+17.9%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Investment Philosophy -->
+      <div style="margin-bottom: 48px;">
+        <div style="margin-bottom: 32px;">
+          <div class="page-tag">운용 철학</div>
+          <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.8px; color: var(--text);">우리가 투자하는 방식</h2>
+        </div>
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <div class="philosophy-icon">🔍</div>
+            <div class="philosophy-title">내재가치 중심</div>
+            <div class="philosophy-text">기업의 자산, 수익력, 경쟁적 해자를 면밀히 분석하여 시장가격이 내재가치 대비 충분한 안전마진이 확보된 종목에만 투자합니다.</div>
+          </div>
+          <div class="philosophy-card">
+            <div class="philosophy-icon">⏳</div>
+            <div class="philosophy-title">장기 관점 투자</div>
+            <div class="philosophy-text">단기 시세차익보다 기업가치의 장기적 성장에 집중합니다. 시장의 단기 변동성은 좋은 기업을 합리적 가격에 살 수 있는 기회로 봅니다.</div>
+          </div>
+          <div class="philosophy-card">
+            <div class="philosophy-icon">🛡️</div>
+            <div class="philosophy-title">손실 회피 우선</div>
+            <div class="philosophy-text">절대 수익보다 원금 보전을 우선합니다. 확신이 없는 투자는 하지 않으며, 포트폴리오의 집중도를 높여 진정으로 이해하는 기업에 집중합니다.</div>
+          </div>
+          <div class="philosophy-card">
+            <div class="philosophy-icon">📊</div>
+            <div class="philosophy-title">독립적 사고</div>
+            <div class="philosophy-text">시장의 컨센서스와 다른 독자적인 투자 아이디어를 발굴합니다. 대중의 공포와 탐욕에 역행하는 역발상 투자를 지향합니다.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="container">
+    <div class="disclaimer">
+      ※ 이 웹사이트에 기재된 수익률은 과거 실적이며, 미래 수익을 보장하지 않습니다.
+      투자는 원금 손실의 위험이 있으며, 투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
+      본 조합은 「자본시장과 금융투자업에 관한 법률」에 따라 운용되며, 조합원에게만 정보가 공개됩니다.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="nav-logo-icon" style="width:24px; height:24px; font-size:12px;">V</div>
+            가치투자조합 1호
+          </div>
+          <div class="footer-text" style="margin-top: 8px;">
+            장기적 가치 창출을 추구하는 투자조합 ·  설정일 2022.10.01
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="performance.html" class="footer-link">운용결과</a>
+          <a href="letter.html" class="footer-link">주주서한</a>
+          <a href="report.html" class="footer-link">레포트</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+<script>
+// Mini Bar Chart
+const miniCtx = document.getElementById('miniChart').getContext('2d');
+
+const quarterLabels = ['22Q4','23Q1','23Q2','23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2'];
+const quarterReturns = [3.2, 7.1, -2.3, 4.8, 11.2, 9.5, 3.7, -1.8, 14.3, 8.2, 5.6];
+
+new Chart(miniCtx, {
+  type: 'bar',
+  data: {
+    labels: quarterLabels,
+    datasets: [{
+      data: quarterReturns,
+      backgroundColor: quarterReturns.map(v => v >= 0 ? 'rgba(52, 211, 153, 0.7)' : 'rgba(248, 113, 113, 0.7)'),
+      borderColor: quarterReturns.map(v => v >= 0 ? '#34d399' : '#f87171'),
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1a1a22',
+        borderColor: 'rgba(255,255,255,0.1)',
+        borderWidth: 1,
+        titleColor: '#8888a0',
+        bodyColor: '#e8e8f0',
+        callbacks: {
+          label: ctx => (ctx.parsed.y >= 0 ? '+' : '') + ctx.parsed.y.toFixed(1) + '%'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { color: '#55556a', font: { size: 10 } }
+      },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        border: { display: false },
+        ticks: {
+          color: '#55556a',
+          font: { size: 10 },
+          callback: v => (v >= 0 ? '+' : '') + v + '%'
+        }
+      }
+    }
+  }
+});
+
+// Donut Chart
+const donutCtx = document.getElementById('donutChart').getContext('2d');
+new Chart(donutCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['국내 주식', '해외 주식', '현금성 자산', '기타'],
+    datasets: [{
+      data: [38, 43, 12, 7],
+      backgroundColor: ['#4f7ef7', '#a78bfa', '#34d399', '#fbbf24'],
+      borderColor: '#131318',
+      borderWidth: 3,
+      hoverBorderColor: '#1a1a22',
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '70%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1a1a22',
+        borderColor: 'rgba(255,255,255,0.1)',
+        borderWidth: 1,
+        titleColor: '#8888a0',
+        bodyColor: '#e8e8f0',
+        callbacks: {
+          label: ctx => ' ' + ctx.label + ': ' + ctx.parsed + '%'
+        }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

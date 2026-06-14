@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>운용결과 — 가치투자조합 1호</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">V</div>
+      <span>가치투자조합 1호</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">홈</a>
+      <a href="performance.html" class="nav-link active">운용결과</a>
+      <a href="letter.html" class="nav-link">주주서한</a>
+      <a href="report.html" class="nav-link">레포트</a>
+    </div>
+    <div class="nav-badge">운용 중</div>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-inner">
+        <div>
+          <div class="page-tag">Performance</div>
+          <h1 class="page-title">운용결과</h1>
+          <p class="page-desc">설정일(2022년 10월)부터 현재까지의 운용 성과를 분기별, 연도별로 확인하세요.</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <div class="stat-card" style="min-width: 140px;">
+            <div class="stat-label">누적 수익률</div>
+            <div class="stat-value positive">+68.4%</div>
+          </div>
+          <div class="stat-card" style="min-width: 140px;">
+            <div class="stat-label">연환산 수익률</div>
+            <div class="stat-value positive">+24.8%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+
+      <!-- Main Chart Card -->
+      <div class="card" style="margin-bottom: 28px;">
+        <div class="card-header" style="flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div class="card-title">수익률 추이</div>
+            <div class="card-subtitle" id="chartSubtitle">설정 이후 분기별 누적 수익률</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <div class="chart-toggle">
+              <button class="active" id="btnCumulative" onclick="setView('cumulative')">누적 수익률</button>
+              <button id="btnQuarterly" onclick="setView('quarterly')">분기별 수익률</button>
+              <button id="btnYTD" onclick="setView('ytd')">연도별 수익률</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container" style="height: 380px;">
+          <canvas id="mainChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Summary Cards Row -->
+      <div class="grid-4" style="margin-bottom: 28px;">
+        <div class="stat-card">
+          <div class="stat-label">2022년 수익률</div>
+          <div class="stat-value positive">+3.2%</div>
+          <div class="stat-sub">설정 후 첫 분기 (Q4)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">2023년 수익률</div>
+          <div class="stat-value positive">+22.5%</div>
+          <div class="stat-sub">연간 수익률</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">2024년 수익률</div>
+          <div class="stat-value positive">+27.8%</div>
+          <div class="stat-sub">연간 수익률</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">2025년 YTD</div>
+          <div class="stat-value positive">+14.1%</div>
+          <div class="stat-sub">2025년 상반기</div>
+        </div>
+      </div>
+
+      <!-- Tables Row -->
+      <div class="grid-2" style="gap: 24px; align-items: start;">
+
+        <!-- Quarterly Table -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">분기별 수익률</div>
+              <div class="card-subtitle">각 분기 수익률 및 누적 수익률</div>
+            </div>
+          </div>
+          <div class="perf-table-wrapper">
+            <table class="perf-table">
+              <thead>
+                <tr>
+                  <th>분기</th>
+                  <th>분기 수익률</th>
+                  <th>누적 수익률</th>
+                  <th>벤치마크</th>
+                  <th>초과</th>
+                </tr>
+              </thead>
+              <tbody id="quarterlyTableBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Annual Table -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">연도별 수익률</div>
+              <div class="card-subtitle">연간 및 누적 수익률</div>
+            </div>
+          </div>
+          <div class="perf-table-wrapper">
+            <table class="perf-table">
+              <thead>
+                <tr>
+                  <th>연도</th>
+                  <th>연간 수익률</th>
+                  <th>누적 수익률</th>
+                  <th>벤치마크</th>
+                  <th>초과</th>
+                </tr>
+              </thead>
+              <tbody id="annualTableBody">
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Risk Metrics -->
+          <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <div style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">위험 지표</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 12px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">최대낙폭 (MDD)</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--red);">-8.3%</div>
+              </div>
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 12px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">샤프 비율</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--text);">1.84</div>
+              </div>
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 12px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">변동성 (연환산)</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--text);">13.2%</div>
+              </div>
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 12px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">수익 발생 분기</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--green);">9 / 11</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="disclaimer">
+        ※ 벤치마크는 코스피 지수 기준입니다. 과거 수익률은 미래 성과를 보장하지 않으며, 투자원금은 손실될 수 있습니다.
+        표시된 수익률은 보수 및 세금 차감 전 기준입니다.
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="nav-logo-icon" style="width:24px; height:24px; font-size:12px;">V</div>
+            가치투자조합 1호
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="performance.html" class="footer-link">운용결과</a>
+          <a href="letter.html" class="footer-link">주주서한</a>
+          <a href="report.html" class="footer-link">레포트</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/performance.js"></script>
+</body>
+</html>
