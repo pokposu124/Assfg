@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>가치투자조합 1호 — Investment Portfolio</title>
-  <meta name="description" content="장기적 가치 창출을 추구하는 투자조합입니다.">
+  <title>나무늘보 투자조합 — Sloth Investment Partnership</title>
+  <meta name="description" content="산업의 병목지점을 찾아 장기 투자하는 나무늘보 투자조합입니다.">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
@@ -14,8 +14,8 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">V</div>
-      <span>가치투자조합 1호</span>
+      <div class="nav-logo-icon">🦥</div>
+      <span>나무늘보 투자조합</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link active">홈</a>
@@ -34,43 +34,43 @@
     <div class="container">
       <div class="hero-tag">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-        투자조합 소개
+        Sloth Investment Partnership
       </div>
       <h1 class="hero-title">
-        내재가치에 집중하는<br>
+        산업의 병목지점을 찾는<br>
         <span>장기 가치 투자</span>
       </h1>
       <p class="hero-desc">
-        가치투자조합 1호는 시장의 단기 변동성에 흔들리지 않고, 기업의 본질적 가치에 기반한 투자를 통해
-        조합원의 자산을 장기적으로 불려나가는 것을 목표로 합니다.
+        나무늘보 투자조합은 10년 뒤에 더 커질 산업의 병목지점에 있는 기업에 집중 투자합니다.
+        빠르게 부자가 되는 것이 아닌, 느리지만 단단하게 자산을 불려나가는 것이 목표입니다.
       </p>
 
       <!-- Key Stats -->
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-label">설정일</div>
-          <div class="stat-value" style="font-size:20px;">2022. 10. 01</div>
-          <div class="stat-sub">운용 시작일</div>
+          <div class="stat-value" style="font-size:20px;">2026. 01</div>
+          <div class="stat-sub">운용 시작 (자기자본)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">누적 수익률</div>
-          <div class="stat-value positive">+68.4%</div>
-          <div class="stat-sub">설정일 기준</div>
+          <div class="stat-label">2026년 YTD</div>
+          <div class="stat-value negative">-1.8%</div>
+          <div class="stat-sub">2026. 01 ~ 03. 29</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">YTD 수익률</div>
-          <div class="stat-value positive">+14.1%</div>
-          <div class="stat-sub">2025년 기준</div>
+          <div class="stat-label">S&amp;P500 대비</div>
+          <div class="stat-value positive">+5.34%p</div>
+          <div class="stat-sub">S&P500 YTD -7.14%</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">이번 분기 수익률</div>
-          <div class="stat-value positive">+5.6%</div>
-          <div class="stat-sub">2025년 2분기</div>
+          <div class="stat-label">MSCI 선진국 대비</div>
+          <div class="stat-value positive">+3.83%p</div>
+          <div class="stat-sub">MSCI YTD -5.63%</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">운용 규모 (AUM)</div>
-          <div class="stat-value" style="font-size:20px;">비공개</div>
-          <div class="stat-sub">조합원 한정 공개</div>
+          <div class="stat-label">성과 기준 (허들레이트)</div>
+          <div class="stat-value" style="font-size:20px;">연 6%</div>
+          <div class="stat-sub">초과분의 20% 성과보수</div>
         </div>
       </div>
     </div>
@@ -81,56 +81,67 @@
     <div class="container">
       <div class="grid-2" style="gap: 28px; align-items: start;">
 
-        <!-- Quarter Highlight + Portfolio Chart -->
+        <!-- Quarter Highlight + Mini Chart -->
         <div style="display: flex; flex-direction: column; gap: 20px;">
 
-          <!-- Current Quarter Highlight -->
+          <!-- Q1 2026 Highlight -->
           <div class="quarter-highlight">
-            <div class="quarter-label">2025년 2분기 수익률</div>
-            <div class="quarter-return">+5.6%</div>
-            <div class="quarter-period">2025. 04. 01 — 2025. 06. 30</div>
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(79,126,247,0.15); display: flex; gap: 24px;">
+            <div class="quarter-label">2026년 1분기 운용결과 (YTD)</div>
+            <div class="quarter-return" style="color: var(--red);">-1.8%</div>
+            <div class="quarter-period">종료일: 2026. 03. 29</div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(61,153,112,0.15); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
               <div>
-                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">누적 수익</div>
-                <div style="font-size: 18px; font-weight: 700; color: var(--green);">+68.4%</div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">S&P500</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--red);">-7.14%</div>
               </div>
               <div>
-                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">벤치마크 대비</div>
-                <div style="font-size: 18px; font-weight: 700; color: var(--blue-light);">+31.2%p</div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">MSCI 선진국</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--red);">-5.63%</div>
               </div>
               <div>
-                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">운용 기간</div>
-                <div style="font-size: 18px; font-weight: 700; color: var(--text);">33개월</div>
+                <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">S&P500 초과</div>
+                <div style="font-size: 18px; font-weight: 700; color: var(--green);">+5.34%p</div>
               </div>
             </div>
           </div>
 
-          <!-- Mini Performance Chart -->
+          <!-- Benchmark Comparison Chart -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">분기별 수익률 추이</div>
-                <div class="card-subtitle">설정 이후 분기별 수익률</div>
+                <div class="card-title">벤치마크 비교 (2026 YTD)</div>
+                <div class="card-subtitle">나무늘보 vs S&P500 vs MSCI 선진국</div>
               </div>
               <a href="performance.html" class="btn btn-ghost btn-sm">
                 전체 보기
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
-            <div class="chart-container" style="height: 180px;">
-              <canvas id="miniChart"></canvas>
+            <div class="chart-container" style="height: 200px;">
+              <canvas id="benchmarkChart"></canvas>
             </div>
+          </div>
+
+          <!-- Fund Note -->
+          <div style="background: rgba(61,153,112,0.05); border: 1px solid rgba(61,153,112,0.15); border-radius: var(--radius-lg); padding: 20px 22px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--blue-light); margin-bottom: 8px;">💬 운용역 노트</div>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+              저희의 성과 기준은 연복리 6%이기 때문에 투자조합을 시작한 뒤 3개월밖에 지나지 않은 시점에서의 성과는 크게 신경쓰지 않으셔도 됩니다.
+              나무늘보 투자조합은 <strong style="color: var(--text);">최소 3년차부터 시작</strong>입니다.
+              아직 보유 현금의 50%도 투자하지 않았기 때문에 하락장이 지속된다면 추가 현금을 투입하여 좋은 기업에 투자하려 합니다.
+            </p>
           </div>
         </div>
 
-        <!-- Right Column: Portfolio Allocation -->
+        <!-- Right Column: Portfolio Info -->
         <div style="display: flex; flex-direction: column; gap: 20px;">
-          <!-- Donut Chart -->
+
+          <!-- Portfolio Allocation -->
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">투자 비중</div>
-                <div class="card-subtitle">2025년 6월 말 기준</div>
+                <div class="card-title">투자 비중 (개략)</div>
+                <div class="card-subtitle">2026년 1분기 말 기준</div>
               </div>
             </div>
             <div style="display: flex; align-items: center; gap: 24px;">
@@ -140,106 +151,106 @@
               <div class="allocation-list" style="flex: 1;">
                 <div class="allocation-item">
                   <div class="allocation-info">
-                    <div class="allocation-dot" style="background: #4f7ef7;"></div>
-                    <div class="allocation-name">국내 주식</div>
-                  </div>
-                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
-                    <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 38%; background: #4f7ef7;"></div>
-                    </div>
-                    <div class="allocation-pct">38%</div>
-                  </div>
-                </div>
-                <div class="allocation-item">
-                  <div class="allocation-info">
-                    <div class="allocation-dot" style="background: #a78bfa;"></div>
-                    <div class="allocation-name">해외 주식</div>
-                  </div>
-                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
-                    <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 43%; background: #a78bfa;"></div>
-                    </div>
-                    <div class="allocation-pct">43%</div>
-                  </div>
-                </div>
-                <div class="allocation-item">
-                  <div class="allocation-info">
                     <div class="allocation-dot" style="background: #34d399;"></div>
                     <div class="allocation-name">현금성 자산</div>
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 12%; background: #34d399;"></div>
+                      <div class="allocation-bar" style="width: 55%; background: #34d399;"></div>
                     </div>
-                    <div class="allocation-pct">12%</div>
+                    <div class="allocation-pct">~55%</div>
                   </div>
                 </div>
                 <div class="allocation-item">
                   <div class="allocation-info">
-                    <div class="allocation-dot" style="background: #fbbf24;"></div>
-                    <div class="allocation-name">기타</div>
+                    <div class="allocation-dot" style="background: #3d9970;"></div>
+                    <div class="allocation-name">WST (West Pharma)</div>
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 7%; background: #fbbf24;"></div>
+                      <div class="allocation-bar" style="width: 28%; background: #3d9970;"></div>
                     </div>
-                    <div class="allocation-pct">7%</div>
+                    <div class="allocation-pct">~28%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #a78bfa;"></div>
+                    <div class="allocation-name">WM (Waste Mgmt)</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 17%; background: #a78bfa;"></div>
+                    </div>
+                    <div class="allocation-pct">~17%</div>
                   </div>
                 </div>
               </div>
             </div>
+            <div style="margin-top: 16px; padding: 10px 14px; background: var(--bg-elevated); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-dim);">
+              * 투자 비중은 개략치이며, 정확한 내역은 주주서한에서 확인하세요.
+            </div>
           </div>
 
-          <!-- Top Holdings -->
+          <!-- Holdings -->
           <div class="card">
             <div class="card-header">
               <div>
                 <div class="card-title">주요 보유 종목</div>
-                <div class="card-subtitle">상위 5개 종목 (비중 순)</div>
+                <div class="card-subtitle">확인된 보유 종목 (1분기 기준)</div>
               </div>
             </div>
             <table class="perf-table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>종목명</th>
-                  <th>비중</th>
-                  <th>손익</th>
+                  <th>종목</th>
+                  <th>사업</th>
+                  <th>투자 포인트</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="neutral">1</td>
-                  <td class="font-medium">A사 (비공개)</td>
-                  <td>14.2%</td>
-                  <td class="positive">+42.1%</td>
+                  <td class="font-medium" style="white-space:nowrap;">WST<br><span style="font-size:11px; color: var(--text-dim);">West Pharma</span></td>
+                  <td style="font-size:13px;">주사제 약품 마개</td>
+                  <td style="font-size:12px; color: var(--text-muted);">FDA 인증 병목, 바이오의약품 90% 납품</td>
                 </tr>
                 <tr>
-                  <td class="neutral">2</td>
-                  <td class="font-medium">B사 (비공개)</td>
-                  <td>11.8%</td>
-                  <td class="positive">+28.6%</td>
-                </tr>
-                <tr>
-                  <td class="neutral">3</td>
-                  <td class="font-medium">C사 (비공개)</td>
-                  <td>9.4%</td>
-                  <td class="negative">-3.2%</td>
-                </tr>
-                <tr>
-                  <td class="neutral">4</td>
-                  <td class="font-medium">D사 (비공개)</td>
-                  <td>8.7%</td>
-                  <td class="positive">+61.3%</td>
-                </tr>
-                <tr>
-                  <td class="neutral">5</td>
-                  <td class="font-medium">E사 (비공개)</td>
-                  <td>7.1%</td>
-                  <td class="positive">+17.9%</td>
+                  <td class="font-medium" style="white-space:nowrap;">WM<br><span style="font-size:11px; color: var(--text-dim);">Waste Management</span></td>
+                  <td style="font-size:13px;">폐기물 관리</td>
+                  <td style="font-size:12px; color: var(--text-muted);">RNG 자체 연료 51.8%, 유가 저항력</td>
                 </tr>
               </tbody>
             </table>
+            <div style="margin-top: 14px; padding: 10px 14px; background: var(--bg-elevated); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-dim);">
+              * 목표: 5~10개 집중 종목. 추가 매수 기회 지속 탐색 중.
+            </div>
+          </div>
+
+          <!-- Fee Structure -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">보수 체계</div>
+                <div class="card-subtitle">성과보수 방식</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 14px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 6px;">운용보수</div>
+                <div style="font-size: 20px; font-weight: 700; color: var(--text);">없음</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">수익 창출 시에만 보수</div>
+              </div>
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 14px;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 6px;">허들 레이트</div>
+                <div style="font-size: 20px; font-weight: 700; color: var(--blue-light);">연 4%</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">미국 장기채 기준</div>
+              </div>
+              <div style="background: var(--bg-elevated); border-radius: var(--radius-sm); padding: 14px; grid-column: span 2;">
+                <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 6px;">성과보수</div>
+                <div style="font-size: 20px; font-weight: 700; color: var(--text);">초과수익의 20%</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">허들 초과분에만 적용 · 손실 회복 전까지 미수취</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -249,29 +260,66 @@
       <!-- Investment Philosophy -->
       <div style="margin-bottom: 48px;">
         <div style="margin-bottom: 32px;">
-          <div class="page-tag">운용 철학</div>
-          <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.8px; color: var(--text);">우리가 투자하는 방식</h2>
+          <div class="page-tag">투자 철학</div>
+          <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.8px; color: var(--text);">호르무즈 해협을 찾아서</h2>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 10px; max-width: 600px; line-height: 1.7;">
+            호르무즈 해협이 전 세계 석유 이동의 20%를 담당하듯, 저희는 산업에서 최종 상품을 만들려면 꼭 지나야 할 "병목기업"을 찾습니다.
+          </p>
         </div>
         <div class="philosophy-grid">
           <div class="philosophy-card">
             <div class="philosophy-icon">🔍</div>
-            <div class="philosophy-title">내재가치 중심</div>
-            <div class="philosophy-text">기업의 자산, 수익력, 경쟁적 해자를 면밀히 분석하여 시장가격이 내재가치 대비 충분한 안전마진이 확보된 종목에만 투자합니다.</div>
+            <div class="philosophy-title">병목지점 투자</div>
+            <div class="philosophy-text">산업에서 누구도 대체할 수 없는 핵심 공급자를 찾습니다. 고객이 떠날 수 없는 슈퍼을 포지션의 기업이 목표입니다.</div>
           </div>
           <div class="philosophy-card">
             <div class="philosophy-icon">⏳</div>
-            <div class="philosophy-title">장기 관점 투자</div>
-            <div class="philosophy-text">단기 시세차익보다 기업가치의 장기적 성장에 집중합니다. 시장의 단기 변동성은 좋은 기업을 합리적 가격에 살 수 있는 기회로 봅니다.</div>
+            <div class="philosophy-title">10년 이상 장기 보유</div>
+            <div class="philosophy-text">최소 운용기간 10년을 전제합니다. 기업의 펀더멘털이나 경제적 해자가 훼손되지 않는 한 매도하지 않습니다.</div>
           </div>
           <div class="philosophy-card">
-            <div class="philosophy-icon">🛡️</div>
-            <div class="philosophy-title">손실 회피 우선</div>
-            <div class="philosophy-text">절대 수익보다 원금 보전을 우선합니다. 확신이 없는 투자는 하지 않으며, 포트폴리오의 집중도를 높여 진정으로 이해하는 기업에 집중합니다.</div>
+            <div class="philosophy-icon">🎯</div>
+            <div class="philosophy-title">5~10종목 집중</div>
+            <div class="philosophy-text">분산투자는 수익의 상방을 낮춥니다. 철저히 분석하고 확신이 있는 소수의 기업에 집중하여 수익률을 극대화합니다.</div>
           </div>
           <div class="philosophy-card">
-            <div class="philosophy-icon">📊</div>
-            <div class="philosophy-title">독립적 사고</div>
-            <div class="philosophy-text">시장의 컨센서스와 다른 독자적인 투자 아이디어를 발굴합니다. 대중의 공포와 탐욕에 역행하는 역발상 투자를 지향합니다.</div>
+            <div class="philosophy-icon">🐌</div>
+            <div class="philosophy-title">느리게 부자되기</div>
+            <div class="philosophy-text">빠른 수익보다 단단한 기반을 추구합니다. 하락장은 좋은 기업을 싸게 살 기회로 봅니다. 조급함이 아닌 확신으로 투자합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Spotlight -->
+      <div style="margin-bottom: 48px;">
+        <div style="margin-bottom: 24px;">
+          <div class="page-tag">투자 아이디어</div>
+          <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.8px; color: var(--text);">현재 주목하는 병목기업</h2>
+        </div>
+        <div class="grid-2" style="gap: 20px;">
+          <div class="philosophy-card" style="border-color: rgba(61,153,112,0.2);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+              <div style="font-size: 24px;">💊</div>
+              <div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--text);">West Pharmaceutical Services</div>
+                <div style="font-size: 12px; color: var(--blue-light); font-weight: 600;">NYSE: WST</div>
+              </div>
+            </div>
+            <div class="philosophy-text">
+              주사로 투여되는 약물의 FDA 승인 고무마개 제조사. 2025년 출시 바이오의약품·바이오시밀러의 90% 이상에 납품 중. 공급사 변경 시 FDA 재인증이 필요해 고객이 떠날 수 없는 구조. 1차 의약품 포장 시장은 2030년까지 연 10% 성장 전망.
+            </div>
+          </div>
+          <div class="philosophy-card" style="border-color: rgba(167,139,250,0.2);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+              <div style="font-size: 24px;">♻️</div>
+              <div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--text);">Waste Management</div>
+                <div style="font-size: 12px; color: var(--purple); font-weight: 600;">NYSE: WM</div>
+              </div>
+            </div>
+            <div class="philosophy-text">
+              미국 폐기물 관리 1위 기업. 매립지에서 RNG(대체연료)를 자체 생산해 차량 51.8%에 공급 — 경쟁사(Republic 20%, GFL 10~14%) 대비 압도적 연료 자립도. 유가 상승에 가장 저항력이 강한 폐기물 기업.
+            </div>
           </div>
         </div>
       </div>
@@ -282,9 +330,9 @@
   <!-- Disclaimer -->
   <div class="container">
     <div class="disclaimer">
-      ※ 이 웹사이트에 기재된 수익률은 과거 실적이며, 미래 수익을 보장하지 않습니다.
+      ※ 나무늘보 투자조합은 현재 자기자본으로 운용 중이며, 2027년부터 외부 투자 유치를 계획하고 있습니다.
+      과거 성과는 미래 수익을 보장하지 않으며, 모든 수익률은 보수 및 세금 차감 전 기준입니다.
       투자는 원금 손실의 위험이 있으며, 투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
-      본 조합은 「자본시장과 금융투자업에 관한 법률」에 따라 운용되며, 조합원에게만 정보가 공개됩니다.
     </div>
   </div>
 
@@ -294,11 +342,11 @@
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <div class="nav-logo-icon" style="width:24px; height:24px; font-size:12px;">V</div>
-            가치투자조합 1호
+            <span style="font-size:18px;">🦥</span>
+            나무늘보 투자조합
           </div>
           <div class="footer-text" style="margin-top: 8px;">
-            장기적 가치 창출을 추구하는 투자조합 ·  설정일 2022.10.01
+            Sloth Investment Partnership · 설정일 2026.01 · 느리게, 단단하게
           </div>
         </div>
         <div class="footer-links">
@@ -312,27 +360,26 @@
 
 </div>
 
-<!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script src="js/main.js"></script>
 <script>
-// Mini Bar Chart
-const miniCtx = document.getElementById('miniChart').getContext('2d');
-
-const quarterLabels = ['22Q4','23Q1','23Q2','23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2'];
-const quarterReturns = [3.2, 7.1, -2.3, 4.8, 11.2, 9.5, 3.7, -1.8, 14.3, 8.2, 5.6];
-
-new Chart(miniCtx, {
+// Benchmark Comparison Bar Chart
+const benchCtx = document.getElementById('benchmarkChart').getContext('2d');
+new Chart(benchCtx, {
   type: 'bar',
   data: {
-    labels: quarterLabels,
+    labels: ['나무늘보 투자조합', 'S&P 500', 'MSCI 선진국'],
     datasets: [{
-      data: quarterReturns,
-      backgroundColor: quarterReturns.map(v => v >= 0 ? 'rgba(52, 211, 153, 0.7)' : 'rgba(248, 113, 113, 0.7)'),
-      borderColor: quarterReturns.map(v => v >= 0 ? '#34d399' : '#f87171'),
-      borderWidth: 1,
-      borderRadius: 4,
+      data: [-1.8, -7.14, -5.63],
+      backgroundColor: [
+        'rgba(61, 153, 112, 0.7)',
+        'rgba(248, 113, 113, 0.5)',
+        'rgba(248, 113, 113, 0.5)',
+      ],
+      borderColor: ['#3d9970', '#f87171', '#f87171'],
+      borderWidth: 1.5,
+      borderRadius: 6,
     }]
   },
   options: {
@@ -347,7 +394,7 @@ new Chart(miniCtx, {
         titleColor: '#8888a0',
         bodyColor: '#e8e8f0',
         callbacks: {
-          label: ctx => (ctx.parsed.y >= 0 ? '+' : '') + ctx.parsed.y.toFixed(1) + '%'
+          label: ctx => ' ' + (ctx.parsed.y >= 0 ? '+' : '') + ctx.parsed.y.toFixed(2) + '%'
         }
       }
     },
@@ -355,15 +402,15 @@ new Chart(miniCtx, {
       x: {
         grid: { display: false },
         border: { display: false },
-        ticks: { color: '#55556a', font: { size: 10 } }
+        ticks: { color: '#55556a', font: { size: 11 } }
       },
       y: {
         grid: { color: 'rgba(255,255,255,0.04)' },
         border: { display: false },
         ticks: {
           color: '#55556a',
-          font: { size: 10 },
-          callback: v => (v >= 0 ? '+' : '') + v + '%'
+          font: { size: 11 },
+          callback: v => (v >= 0 ? '+' : '') + v.toFixed(0) + '%'
         }
       }
     }
@@ -375,10 +422,10 @@ const donutCtx = document.getElementById('donutChart').getContext('2d');
 new Chart(donutCtx, {
   type: 'doughnut',
   data: {
-    labels: ['국내 주식', '해외 주식', '현금성 자산', '기타'],
+    labels: ['현금성 자산', 'WST', 'WM'],
     datasets: [{
-      data: [38, 43, 12, 7],
-      backgroundColor: ['#4f7ef7', '#a78bfa', '#34d399', '#fbbf24'],
+      data: [55, 28, 17],
+      backgroundColor: ['#34d399', '#3d9970', '#a78bfa'],
       borderColor: '#131318',
       borderWidth: 3,
       hoverBorderColor: '#1a1a22',
@@ -397,7 +444,7 @@ new Chart(donutCtx, {
         titleColor: '#8888a0',
         bodyColor: '#e8e8f0',
         callbacks: {
-          label: ctx => ' ' + ctx.label + ': ' + ctx.parsed + '%'
+          label: ctx => ' ' + ctx.label + ': ~' + ctx.parsed + '%'
         }
       }
     }
