@@ -87,9 +87,9 @@
           <div class="stat-sub">운용 시작 (자기자본)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">2026년 1분기</div>
-          <div class="stat-value negative">-1.8%</div>
-          <div class="stat-sub">2026. 01 ~ 03. 29 (Q1 확정)</div>
+          <div class="stat-label">설정 이후 누적</div>
+          <div class="stat-value positive">+17.30%</div>
+          <div class="stat-sub">2026. 06. 15 기준</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">S&amp;P500 대비</div>
@@ -143,7 +143,7 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <div class="card-title">벤치마크 비교 (2026 YTD)</div>
+                <div class="card-title">벤치마크 비교 (2026 Q1)</div>
                 <div class="card-subtitle">나무늘보 vs S&P500 vs MSCI 선진국</div>
               </div>
               <a href="performance.html" class="btn btn-ghost btn-sm">
@@ -199,7 +199,7 @@
             <div class="card-header">
               <div>
                 <div class="card-title">투자 비중 (개략)</div>
-                <div class="card-subtitle">2026. 06. 15 기준 · 투자 자산 내</div>
+                <div class="card-subtitle">2026. 06. 15 기준 · 총 포트폴리오 기준</div>
               </div>
             </div>
             <div class="chart-allocation-row" style="display: flex; align-items: center; gap: 24px;">
@@ -214,9 +214,9 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 47.8%; background: #60a5fa;"></div>
+                      <div class="allocation-bar" style="width: 37%; background: #60a5fa;"></div>
                     </div>
-                    <div class="allocation-pct">47.8%</div>
+                    <div class="allocation-pct">37.0%</div>
                   </div>
                 </div>
                 <div class="allocation-item">
@@ -226,9 +226,21 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 37.5%; background: #3d9970;"></div>
+                      <div class="allocation-bar" style="width: 29%; background: #3d9970;"></div>
                     </div>
-                    <div class="allocation-pct">37.5%</div>
+                    <div class="allocation-pct">29.0%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #34d399;"></div>
+                    <div class="allocation-name">현금성 자산</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 22.6%; background: #34d399;"></div>
+                    </div>
+                    <div class="allocation-pct">22.6%</div>
                   </div>
                 </div>
                 <div class="allocation-item">
@@ -238,15 +250,15 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 14.8%; background: #a78bfa;"></div>
+                      <div class="allocation-bar" style="width: 11.4%; background: #a78bfa;"></div>
                     </div>
-                    <div class="allocation-pct">14.8%</div>
+                    <div class="allocation-pct">11.4%</div>
                   </div>
                 </div>
               </div>
             </div>
             <div style="margin-top: 16px; padding: 10px 14px; background: var(--bg-elevated); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-dim);">
-              * 투자 자산(주식) 내 비중 기준. 현금성 자산 제외. 정확한 내역은 주주서한을 참고하세요.
+              * 총 포트폴리오($3,518.90) 기준 비중. 현금 = 초기 자본 $3,000 - 투자 원금 $2,203.78.
             </div>
           </div>
 
@@ -448,10 +460,10 @@ const donutCtx = document.getElementById('donutChart').getContext('2d');
 new Chart(donutCtx, {
   type: 'doughnut',
   data: {
-    labels: ['ASML', 'WST', 'WM'],
+    labels: ['ASML', 'WST', '현금', 'WM'],
     datasets: [{
-      data: [47.77, 37.48, 14.75],
-      backgroundColor: ['#60a5fa', '#3d9970', '#a78bfa'],
+      data: [37.0, 29.0, 22.6, 11.4],
+      backgroundColor: ['#60a5fa', '#3d9970', '#34d399', '#a78bfa'],
       borderColor: '#131318',
       borderWidth: 3,
       hoverBorderColor: '#1a1a22',
