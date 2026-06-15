@@ -9,7 +9,102 @@ let selectedFile = null;
 let currentViewDoc = null;
 
 // ===========================
-// Seed Data (pre-populated entries without PDF — user uploads PDF separately)
+// Auth
+// SHA-256 of the admin password (default: sloth2026)
+// ===========================
+const AUTH_HASH = '3d697475960498dd52b28db2bc067661f38a2e4c9d95e2e26bb508aca06ce34c';
+let _pendingAuthCallback = null;
+
+function isAuthenticated() {
+  return sessionStorage.getItem('sloth_auth') === '1';
+}
+
+async function _verifyPassword(input) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(input);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('') === AUTH_HASH;
+}
+
+function requireAuth(callback) {
+  if (isAuthenticated()) {
+    callback();
+    return;
+  }
+  _pendingAuthCallback = callback;
+  _showPasswordModal();
+}
+
+function _showPasswordModal() {
+  if (!document.getElementById('authModal')) {
+    const el = document.createElement('div');
+    el.id = 'authModal';
+    el.className = 'modal-overlay';
+    el.innerHTML = `
+      <div class="modal" style="max-width:360px;">
+        <div class="modal-header">
+          <div class="modal-title">🔒 관리자 인증</div>
+        </div>
+        <div class="form-group" style="margin-bottom:8px;">
+          <label class="form-label">비밀번호</label>
+          <input type="password" class="form-input" id="authPasswordInput"
+            placeholder="비밀번호를 입력하세요" autocomplete="current-password">
+        </div>
+        <div id="authError" style="color:var(--red);font-size:13px;margin-bottom:16px;display:none;">
+          비밀번호가 틀렸습니다.
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-secondary" onclick="closePasswordModal()">취소</button>
+          <button class="btn btn-primary" onclick="submitPassword()">확인</button>
+        </div>
+      </div>`;
+    document.body.appendChild(el);
+    el.querySelector('#authPasswordInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitPassword();
+    });
+  }
+  const modal = document.getElementById('authModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('authPasswordInput')?.focus(), 80);
+}
+
+function closePasswordModal() {
+  const modal = document.getElementById('authModal');
+  if (modal) {
+    modal.classList.remove('open');
+    const input = document.getElementById('authPasswordInput');
+    if (input) input.value = '';
+    const err = document.getElementById('authError');
+    if (err) err.style.display = 'none';
+  }
+  document.body.style.overflow = '';
+  _pendingAuthCallback = null;
+}
+
+async function submitPassword() {
+  const input = document.getElementById('authPasswordInput');
+  if (!input) return;
+  const ok = await _verifyPassword(input.value);
+  if (ok) {
+    sessionStorage.setItem('sloth_auth', '1');
+    closePasswordModal();
+    if (_pendingAuthCallback) {
+      const cb = _pendingAuthCallback;
+      _pendingAuthCallback = null;
+      cb();
+    }
+  } else {
+    const err = document.getElementById('authError');
+    if (err) err.style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+
+// ===========================
+// Seed Data
 // ===========================
 const SEED_DATA = {
   letter: [
@@ -50,7 +145,6 @@ function initBoard(type, boardElId, countElId) {
   currentBoardEl = boardElId;
   currentCountEl = countElId;
 
-  // Initialize seed data once
   initializeSeedData(type);
 
   const dateInput = document.getElementById('uploadDate');
@@ -181,46 +275,43 @@ function buildDocItem(doc) {
 }
 
 // ===========================
-// Attach PDF to existing seed entry
+// Upload Modal (auth-gated)
+// ===========================
+function openUploadModal() {
+  requireAuth(() => {
+    attachTargetId = null;
+    _showUploadModal();
+  });
+}
+
+// ===========================
+// Attach PDF to existing seed entry (auth-gated)
 // ===========================
 let attachTargetId = null;
 
 function promptUploadPDF(id) {
-  attachTargetId = id;
-  const docs = getDocs(currentBoardType);
-  const doc = docs.find(d => d.id === id);
-  if (!doc) return;
+  requireAuth(() => {
+    attachTargetId = id;
+    const docs = getDocs(currentBoardType);
+    const doc = docs.find(d => d.id === id);
+    if (!doc) return;
 
-  openUploadModal();
-
-  // Pre-fill title/date from seed
-  const titleInput = document.getElementById('uploadTitle');
-  const dateInput = document.getElementById('uploadDate');
-  if (titleInput) titleInput.value = doc.title;
-  if (dateInput) dateInput.value = doc.date;
-  if (doc.category) {
-    const catInput = document.getElementById('uploadCategory');
-    if (catInput) catInput.value = doc.category;
-  }
+    const titleInput = document.getElementById('uploadTitle');
+    const dateInput = document.getElementById('uploadDate');
+    if (titleInput) titleInput.value = doc.title;
+    if (dateInput) dateInput.value = doc.date;
+    if (doc.category) {
+      const catInput = document.getElementById('uploadCategory');
+      if (catInput) catInput.value = doc.category;
+    }
+    _showUploadModal();
+  });
 }
 
-// ===========================
-// Filter
-// ===========================
-function filterDocs(year, btn) {
-  currentFilter = year;
-  document.querySelectorAll('.chart-toggle button').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  renderBoard();
-}
-
-// ===========================
-// Upload Modal
-// ===========================
-function openUploadModal() {
-  attachTargetId = null;
+function _showUploadModal() {
   selectedFile = null;
-  if (!document.getElementById('uploadTitle').value) document.getElementById('uploadTitle').value = '';
+  const titleInput = document.getElementById('uploadTitle');
+  if (titleInput && !titleInput.value) titleInput.value = '';
   const dateInput = document.getElementById('uploadDate');
   if (dateInput && !dateInput.value) dateInput.value = new Date().toISOString().split('T')[0];
   const summaryInput = document.getElementById('uploadSummary');
@@ -239,7 +330,6 @@ function closeUploadModal() {
   document.body.style.overflow = '';
   selectedFile = null;
   attachTargetId = null;
-  // Reset form
   const titleInput = document.getElementById('uploadTitle');
   if (titleInput) titleInput.value = '';
   const fileInput = document.getElementById('fileInput');
@@ -250,6 +340,16 @@ function closeUploadModal() {
 
 function handleOverlayClick(event) {
   if (event.target === event.currentTarget) closeUploadModal();
+}
+
+// ===========================
+// Filter
+// ===========================
+function filterDocs(year, btn) {
+  currentFilter = year;
+  document.querySelectorAll('.chart-toggle button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderBoard();
 }
 
 // ===========================
@@ -317,7 +417,6 @@ function submitUpload(type) {
     const docs = getDocs(type);
 
     if (attachTargetId) {
-      // Attach PDF to existing seed entry
       const idx = docs.findIndex(d => d.id === attachTargetId);
       if (idx !== -1) {
         docs[idx] = {
@@ -340,7 +439,6 @@ function submitUpload(type) {
       }
     }
 
-    // New document
     const doc = {
       id: generateId(),
       title, date, summary, category,
@@ -399,22 +497,17 @@ function downloadCurrentPDF() {
 }
 
 // ===========================
-// Delete Document
+// Delete Document (auth-gated)
 // ===========================
 function deleteDocument(id) {
-  if (!confirm('이 문서를 삭제하시겠습니까?')) return;
-
-  const docs = getDocs(currentBoardType);
-  const filtered = docs.filter(d => d.id !== id);
-  saveDocs(currentBoardType, filtered);
-
-  // Reset seed flag if all seed docs are deleted
-  if (!filtered.some(d => d.isSeed)) {
-    // allow re-seed on next visit if desired (optional)
-  }
-
-  renderBoard();
-  showToast('문서가 삭제되었습니다.');
+  requireAuth(() => {
+    if (!confirm('이 문서를 삭제하시겠습니까?')) return;
+    const docs = getDocs(currentBoardType);
+    const filtered = docs.filter(d => d.id !== id);
+    saveDocs(currentBoardType, filtered);
+    renderBoard();
+    showToast('문서가 삭제되었습니다.');
+  });
 }
 
 // ===========================
@@ -422,9 +515,11 @@ function deleteDocument(id) {
 // ===========================
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    const auth   = document.getElementById('authModal');
     const viewer = document.getElementById('viewerModal');
     const upload = document.getElementById('uploadModal');
-    if (viewer?.classList.contains('open')) closeViewerModal();
+    if (auth?.classList.contains('open'))   closePasswordModal();
+    else if (viewer?.classList.contains('open')) closeViewerModal();
     else if (upload?.classList.contains('open')) closeUploadModal();
   }
 });
