@@ -139,7 +139,7 @@
             </div>
           </div>
 
-          <!-- Benchmark Comparison Chart -->
+          <!-- Benchmark Comparison Table -->
           <div class="card">
             <div class="card-header">
               <div>
@@ -151,8 +151,50 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
-            <div class="chart-container" style="height: 200px;">
-              <canvas id="benchmarkChart"></canvas>
+            <div class="perf-table-wrapper">
+              <table class="perf-table">
+                <thead>
+                  <tr>
+                    <th>기간</th>
+                    <th>나무늘보</th>
+                    <th>S&P500</th>
+                    <th>MSCI</th>
+                    <th>S&P 초과</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge-quarter">26 YTD</span></td>
+                    <td class="negative">-1.8%</td>
+                    <td class="negative neutral">-7.14%</td>
+                    <td class="negative neutral">-5.63%</td>
+                    <td class="positive">+5.34%p</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+              <div style="text-align: center; padding: 12px 8px; background: rgba(61,153,112,0.07); border-radius: var(--radius-sm); border: 1px solid rgba(61,153,112,0.15);">
+                <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">나무늘보</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--red);">-1.8%</div>
+                <div style="margin-top: 6px; height: 3px; background: var(--bg-elevated); border-radius: 2px; overflow: hidden;">
+                  <div style="height: 100%; width: 25%; background: var(--red); border-radius: 2px; margin-left: auto;"></div>
+                </div>
+              </div>
+              <div style="text-align: center; padding: 12px 8px; background: var(--bg-elevated); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">S&amp;P 500</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--red);">-7.14%</div>
+                <div style="margin-top: 6px; height: 3px; background: var(--bg-elevated); border-radius: 2px; overflow: hidden;">
+                  <div style="height: 100%; width: 100%; background: var(--red); border-radius: 2px; margin-left: auto;"></div>
+                </div>
+              </div>
+              <div style="text-align: center; padding: 12px 8px; background: var(--bg-elevated); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">MSCI</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--red);">-5.63%</div>
+                <div style="margin-top: 6px; height: 3px; background: var(--bg-elevated); border-radius: 2px; overflow: hidden;">
+                  <div style="height: 100%; width: 79%; background: var(--red); border-radius: 2px; margin-left: auto;"></div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -398,59 +440,6 @@
 
 <script src="js/main.js"></script>
 <script>
-// Benchmark Comparison Bar Chart
-const benchCtx = document.getElementById('benchmarkChart').getContext('2d');
-new Chart(benchCtx, {
-  type: 'bar',
-  data: {
-    labels: ['나무늘보 투자조합', 'S&P 500', 'MSCI 선진국'],
-    datasets: [{
-      data: [-1.8, -7.14, -5.63],
-      backgroundColor: [
-        'rgba(61, 153, 112, 0.7)',
-        'rgba(248, 113, 113, 0.5)',
-        'rgba(248, 113, 113, 0.5)',
-      ],
-      borderColor: ['#3d9970', '#f87171', '#f87171'],
-      borderWidth: 1.5,
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        backgroundColor: '#1a1a22',
-        borderColor: 'rgba(255,255,255,0.1)',
-        borderWidth: 1,
-        titleColor: '#8888a0',
-        bodyColor: '#e8e8f0',
-        callbacks: {
-          label: ctx => ' ' + (ctx.parsed.y >= 0 ? '+' : '') + ctx.parsed.y.toFixed(2) + '%'
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-        border: { display: false },
-        ticks: { color: '#55556a', font: { size: 11 } }
-      },
-      y: {
-        grid: { color: 'rgba(255,255,255,0.04)' },
-        border: { display: false },
-        ticks: {
-          color: '#55556a',
-          font: { size: 11 },
-          callback: v => (v >= 0 ? '+' : '') + v.toFixed(0) + '%'
-        }
-      }
-    }
-  }
-});
-
 // Donut Chart
 const donutCtx = document.getElementById('donutChart').getContext('2d');
 new Chart(donutCtx, {
