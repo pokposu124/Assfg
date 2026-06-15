@@ -22,8 +22,42 @@
       <a href="report.html" class="nav-link">레포트</a>
     </div>
     <div class="nav-badge">운용 중</div>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleSidenav()" aria-label="메뉴">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </nav>
+<!-- Sidenav Overlay -->
+<div class="sidenav-overlay" id="sidenavOverlay" onclick="closeSidenav()"></div>
+
+<!-- Sidenav -->
+<div class="sidenav" id="sidenav">
+  <div class="sidenav-header">
+    <a href="index.html" class="sidenav-brand" onclick="closeSidenav()">
+      <div class="nav-logo-icon">🦥</div>
+      <span>나무늘보 투자조합</span>
+    </a>
+    <button class="sidenav-close" onclick="closeSidenav()" aria-label="닫기">✕</button>
+  </div>
+  <div class="sidenav-body">
+    <a href="index.html" class="sidenav-link" onclick="closeSidenav()">
+      <span class="sidenav-icon">🏠</span><span>홈</span>
+    </a>
+    <a href="performance.html" class="sidenav-link" onclick="closeSidenav()">
+      <span class="sidenav-icon">📊</span><span>운용결과</span>
+    </a>
+    <a href="letter.html" class="sidenav-link active" onclick="closeSidenav()">
+      <span class="sidenav-icon">✉️</span><span>주주서한</span>
+    </a>
+    <a href="report.html" class="sidenav-link" onclick="closeSidenav()">
+      <span class="sidenav-icon">📋</span><span>레포트</span>
+    </a>
+  </div>
+  <div class="sidenav-footer">
+    <div class="nav-badge">운용 중</div>
+    <div style="font-size:12px; color:var(--text-dim); margin-top:8px;">Sloth Investment Partnership</div>
+  </div>
+</div>
 
 <div class="page-wrapper">
 

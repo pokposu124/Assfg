@@ -48,3 +48,26 @@ function formatFileSize(bytes) {
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
+
+// Sidenav
+function openSidenav() {
+  document.getElementById('sidenav')?.classList.add('open');
+  document.getElementById('sidenavOverlay')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSidenav() {
+  document.getElementById('sidenav')?.classList.remove('open');
+  document.getElementById('sidenavOverlay')?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleSidenav() {
+  const sidenav = document.getElementById('sidenav');
+  if (!sidenav) return;
+  if (sidenav.classList.contains('open')) { closeSidenav(); } else { openSidenav(); }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSidenav();
+});
