@@ -112,7 +112,7 @@ const SEED_DATA = {
       id: 'seed-letter-2026q1',
       title: '나무늘보 투자조합 2026년 1분기 주주서한',
       date: '2026-03-29',
-      summary: 'YTD -1.8% (S&P500 -7.14% 대비 초과), 웨스트 파마슈티컳 투자 배경, 이란-미국 충돌의 포트폴리오 영향 분석',
+      summary: 'YTD -1.8% (S&P500 -7.14% 대비 초과), 웨스트 파마슈티컬 투자 배경, 이란-미국 충돌의 포트폴리오 영향 분석',
       category: '',
       fileName: null,
       fileSize: null,
@@ -126,7 +126,7 @@ const SEED_DATA = {
       id: 'seed-report-bhp-2025',
       title: 'BHP, 데(大)이터 센터 시대의 떠오르는 별',
       date: '2025-07-18',
-      summary: 'AI 데이터센터 구리 수요 분석 → BHP 수혹주. PER 11배 저평가, FCF Yield 8.28%, 2025 Q1 구리 생산 1위',
+      summary: 'AI 데이터센터 구리 수요 분석 → BHP 수혜주. PER 11배 저평가, FCF Yield 8.28%, 2025 Q1 구리 생산 1위',
       category: '기업분석',
       fileName: null,
       fileSize: null,
@@ -218,7 +218,7 @@ function renderBoard(filter) {
       <div class="board-empty">
         <div class="board-empty-icon">${currentBoardType === 'letter' ? '✉️' : '📋'}</div>
         <div class="board-empty-title">아직 등록된 ${emptyLabel}이 없습니다</div>
-        <div class="board-empty-desc">우측 상단의 업로드 버튼을 눈러 PDF 파일을 추가하세요</div>
+        <div class="board-empty-desc">우측 상단의 업로드 버튼을 눌러 PDF 파일을 추가하세요</div>
       </div>`;
     return;
   }
