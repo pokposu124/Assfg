@@ -11,31 +11,63 @@
   });
 })();
 
+// Toast notification system
 function showToast(message, type = 'success') {
   const container = document.getElementById('toastContainer');
   if (!container) return;
+
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
-  toast.innerHTML = `<span>${type === 'success' ? '✓' : '✕'}</span><span>${message}</span>`;
+  toast.innerHTML = `
+    <span>${type === 'success' ? '✓' : '✕'}</span>
+    <span>${message}</span>
+  `;
   container.appendChild(toast);
+
   setTimeout(() => {
     toast.style.animation = 'toastIn 0.3s ease reverse';
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
 
+// Format date to Korean format
 function formatDateKo(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr);
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 
+// Format file size
 function formatFileSize(bytes) {
   if (bytes < 1024) return bytes + ' B';
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
   return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 }
 
+// Generate unique ID
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
+
+// Sidenav
+function openSidenav() {
+  document.getElementById('sidenav')?.classList.add('open');
+  document.getElementById('sidenavOverlay')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSidenav() {
+  document.getElementById('sidenav')?.classList.remove('open');
+  document.getElementById('sidenavOverlay')?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleSidenav() {
+  const sidenav = document.getElementById('sidenav');
+  if (!sidenav) return;
+  if (sidenav.classList.contains('open')) { closeSidenav(); } else { openSidenav(); }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSidenav();
+});
