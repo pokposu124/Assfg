@@ -70,12 +70,6 @@
           <h1 class="page-title">레포트</h1>
           <p class="page-desc">기업 분석, 산업 리서치, 투자 아이디어 등 심층 분석 자료를 공유합니다.</p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="btn btn-primary" onclick="openUploadModal()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            레포트 업로드
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -83,22 +77,26 @@
   <section class="section" style="padding-top: 0;">
     <div class="container">
 
-      <!-- Filter Bar -->
-      <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
-        <div class="chart-toggle">
-          <button class="active" onclick="filterDocs('all', this)">전체</button>
-          <button onclick="filterDocs('2025', this)">2025</button>
-          <button onclick="filterDocs('2024', this)">2024</button>
-          <button onclick="filterDocs('2023', this)">2023</button>
-        </div>
-        <div style="font-size: 13px; color: var(--text-muted);">
-          총 <span id="docCount">0</span>건
-        </div>
+      <div style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">총 1건</div>
+
+      <div class="report-list">
+
+        <!-- BHP Report -->
+        <a href="reports/bhp-2025.html" class="report-card-link">
+          <div class="report-listing-card">
+            <div class="report-card-meta">
+              <span class="report-card-cat">기업분석</span>
+              <span class="report-card-date">2025. 07. 18</span>
+            </div>
+            <div class="report-card-title">BHP, 데(大)이터 센터 시대의 떠오르는 별</div>
+            <div class="report-card-excerpt">AI 데이터센터 폭증이 만들어낸 구리 수요 급증 → BHP 수혜 분석. PER 11배 저평가, FCF Yield 8.28%, 2025 Q1 구리 생산 세계 1위. 왜 BHP는 AI 시대의 숨겨진 수혜주인가.</div>
+            <div style="display:flex; justify-content:flex-end;">
+              <span class="report-card-read">읽기 →</span>
+            </div>
+          </div>
+        </a>
+
       </div>
-
-      <!-- Board List -->
-      <div id="reportBoard" class="board-list"></div>
-
     </div>
   </section>
 
@@ -107,8 +105,11 @@
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <div class="nav-logo-icon" style="width:24px; height:24px; font-size:12px;">V</div>
+            <span style="font-size:18px;">🦥</span>
             나무늘보 투자조합
+          </div>
+          <div class="footer-text" style="margin-top:8px;">
+            Sloth Investment Partnership · 설정일 2026.01 · 느리게, 단단하게
           </div>
         </div>
         <div class="footer-links">
@@ -119,86 +120,10 @@
       </div>
     </div>
   </footer>
-</div>
 
-<!-- Upload Modal -->
-<div class="modal-overlay" id="uploadModal" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">레포트 업로드</div>
-      <button class="modal-close" onclick="closeUploadModal()">✕</button>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">제목 *</label>
-      <input type="text" class="form-input" id="uploadTitle" placeholder="예: A사 기업 분석 리포트">
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">카테고리</label>
-      <select class="form-input" id="uploadCategory">
-        <option value="기업분석">기업 분석</option>
-        <option value="산업분석">산업 분석</option>
-        <option value="거시경제">거시경제</option>
-        <option value="투자아이디어">투자 아이디어</option>
-        <option value="기타">기타</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">게시 날짜 *</label>
-      <input type="date" class="form-input" id="uploadDate">
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">PDF 파일 *</label>
-      <div class="dropzone" id="dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'report')">
-        <input type="file" accept=".pdf" id="fileInput" onchange="handleFileSelect(event, 'report')">
-        <div class="dropzone-icon">📊</div>
-        <div class="dropzone-title">PDF 파일을 드래그하거나 클릭하여 업로드</div>
-        <div class="dropzone-desc">최대 50MB · PDF 파일만 지원</div>
-        <div id="fileSelectedInfo" class="dropzone-file-selected hidden">
-          <div class="dropzone-file-icon">✅</div>
-          <div class="dropzone-file-name" id="fileSelectedName"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">요약 (선택)</label>
-      <input type="text" class="form-input" id="uploadSummary" placeholder="레포트 핵심 내용을 한 줄로 요약하세요">
-    </div>
-
-    <div class="form-actions">
-      <button class="btn btn-secondary" onclick="closeUploadModal()">취소</button>
-      <button class="btn btn-primary" onclick="submitUpload('report')">업로드</button>
-    </div>
-  </div>
-</div>
-
-<!-- PDF Viewer Modal -->
-<div class="modal-overlay" id="viewerModal" onclick="handleViewerOverlayClick(event)">
-  <div class="modal modal-lg" style="padding: 24px; display: flex; flex-direction: column; height: 90vh;">
-    <div class="modal-header">
-      <div class="modal-title" id="viewerTitle">레포트</div>
-      <div style="display: flex; gap: 8px;">
-        <button class="btn btn-secondary btn-sm" id="downloadBtn" onclick="downloadCurrentPDF()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          다운로드
-        </button>
-        <button class="modal-close" onclick="closeViewerModal()">✕</button>
-      </div>
-    </div>
-    <iframe class="pdf-viewer" id="pdfViewer" src=""></iframe>
-  </div>
 </div>
 
 <div class="toast-container" id="toastContainer"></div>
-
 <script src="js/main.js"></script>
-<script src="js/board.js"></script>
-<script>
-  initBoard('report', 'reportBoard', 'docCount');
-</script>
 </body>
 </html>
