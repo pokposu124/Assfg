@@ -4,34 +4,30 @@
 // ===========================
 const data = {
   quarterly: {
-    labels: ['26Q1', '26Q2 (현재)'],
-    fund:   [-1.8, 19.45],
-    sp500:  [-7.14, 16.95],
-    msci:   [-5.63, 17.30],
+    labels: ['26Q1', '26Q2'],
+    fund:   [-1.8, 41.5],
+    sp500:  [-7.14, 14.9],
+    msci:   [-5.63, 13.8],
   },
   annual: {
     labels: ['2026 YTD'],
-    fund:   [17.30],
-    sp500:  [8.60],
-    msci:   [10.70],
+    fund:   [43.4],
+    sp500:  [9.6],
+    msci:   [9.7],
+  },
+  // Modified Dietz 기준 공식 누적 수익률 (단순 연결과 다를 수 있음)
+  cumulative: {
+    labels: ['설정 기준점', '26Q1', '26Q2'],
+    fund:   [0, -1.8, 43.4],
+    sp500:  [0, -7.14, 9.6],
+    msci:   [0, -5.63, 9.7],
   }
 };
 
-// Cumulative returns (add 0 at inception for line chart)
-function computeCumulative(returns) {
-  let cum = 100;
-  const result = [0]; // inception at 0%
-  returns.forEach(r => {
-    cum = cum * (1 + r / 100);
-    result.push(parseFloat((cum - 100).toFixed(2)));
-  });
-  return result;
-}
-
-const cumulativeLabels = ['설정 기준점', ...data.quarterly.labels];
-const cumulativeFund  = computeCumulative(data.quarterly.fund);
-const cumulativeSP    = computeCumulative(data.quarterly.sp500);
-const cumulativeMSCI  = computeCumulative(data.quarterly.msci);
+const cumulativeLabels = data.cumulative.labels;
+const cumulativeFund   = data.cumulative.fund;
+const cumulativeSP     = data.cumulative.sp500;
+const cumulativeMSCI   = data.cumulative.msci;
 
 // ===========================
 // Chart Config
