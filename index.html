@@ -228,9 +228,9 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 45.9%; background: #60a5fa;"></div>
+                      <div class="allocation-bar" style="width: 36.4%; background: #60a5fa;"></div>
                     </div>
-                    <div class="allocation-pct">45.9%</div>
+                    <div class="allocation-pct">36.4%</div>
                   </div>
                 </div>
                 <div class="allocation-item">
@@ -240,9 +240,21 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 37.0%; background: #3d9970;"></div>
+                      <div class="allocation-bar" style="width: 29.3%; background: #3d9970;"></div>
                     </div>
-                    <div class="allocation-pct">37.0%</div>
+                    <div class="allocation-pct">29.3%</div>
+                  </div>
+                </div>
+                <div class="allocation-item">
+                  <div class="allocation-info">
+                    <div class="allocation-dot" style="background: #34d399;"></div>
+                    <div class="allocation-name">현금성 자산</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <div class="allocation-bar-wrapper" style="flex: 1;">
+                      <div class="allocation-bar" style="width: 20.6%; background: #34d399;"></div>
+                    </div>
+                    <div class="allocation-pct">20.6%</div>
                   </div>
                 </div>
                 <div class="allocation-item">
@@ -252,9 +264,9 @@
                   </div>
                   <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
                     <div class="allocation-bar-wrapper" style="flex: 1;">
-                      <div class="allocation-bar" style="width: 17.2%; background: #a78bfa;"></div>
+                      <div class="allocation-bar" style="width: 13.6%; background: #a78bfa;"></div>
                     </div>
-                    <div class="allocation-pct">17.2%</div>
+                    <div class="allocation-pct">13.6%</div>
                   </div>
                 </div>
               </div>
@@ -456,10 +468,10 @@ const donutCtx = document.getElementById('donutChart').getContext('2d');
 new Chart(donutCtx, {
   type: 'doughnut',
   data: {
-    labels: ['ASML', 'WST', 'WM'],
+    labels: ['ASML', 'WST', '현금', 'WM'],
     datasets: [{
-      data: [45.9, 37.0, 17.2],
-      backgroundColor: ['#60a5fa', '#3d9970', '#a78bfa'],
+      data: [36.4, 29.3, 20.6, 13.6],
+      backgroundColor: ['#60a5fa', '#3d9970', '#34d399', '#a78bfa'],
       borderColor: '#131318',
       borderWidth: 3,
       hoverBorderColor: '#1a1a22',
