@@ -90,7 +90,8 @@
         <div>
           <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;">운용 현황 안내</div>
           <div style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
-            나무늘보 투자조합은 2026년 1월 자기자본으로 운용을 시작했습니다. <strong style="color: var(--text);">2026년 2분기(~6월 30일) 확정 누적 수익률 +43.4%</strong>이며, 분기마다 확정 실적이 추가됩니다. 수익률은 Modified Dietz 방식을 활용하여 계산하였습니다.
+            나무늘보 투자조합은 2026년 1월 자기자본으로 운용을 시작했습니다. <strong style="color: var(--text);">2026년 2분기(~6월 30일) 확정 누적 수익률 +43.4%</strong>이며, 분기마다 확정 실적이 추가됩니다.
+            대표 수익률은 실제 집행된 자본을 시간가중하는 Modified Dietz 방식으로 계산하며, 약정 자본 $3,000 전액 대비 수익률은 아래 <strong style="color: var(--text);">「수익률 산출 기준」</strong>에 함께 표기합니다.
             누적 수익률 차트의 마지막 포인트 <strong style="color: var(--text);">「8/20 (잠정)」은 Q3 진행 중 포트폴리오 원장 기준 추정치(+37.2%)</strong>이며, Q3 종료(9월 30일) 후 확정됩니다.
             2분기 확정치(+43.4%) 대비 하락한 것은 7월 말 이후 ASML의 조정과 WM의 부진이 반영된 결과입니다.
             저희의 성과 기준은 <strong style="color: var(--text);">연복리 6%</strong>이므로 단기 성과보다 장기 누적 수익률에 집중해주시기 바랍니다.
@@ -137,6 +138,77 @@
           <div class="stat-label">S&P500 초과수익</div>
           <div class="stat-value positive">+24.4%p</div>
           <div class="stat-sub">vs S&P500 YTD</div>
+        </div>
+      </div>
+
+      <!-- Dual-basis Returns -->
+      <div class="card" style="margin-bottom: 28px;">
+        <div class="card-header">
+          <div>
+            <div class="card-title">수익률 산출 기준</div>
+            <div class="card-subtitle">동일한 평가이익을 두 가지 관점에서 표시합니다 · 2026. 08. 20 기준</div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="gap: 16px;">
+          <div style="background: rgba(61,153,112,0.06); border: 1px solid rgba(61,153,112,0.18); border-radius: var(--radius-sm); padding: 20px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">집행 자본 기준 · 대표 수익률</div>
+            <div style="font-size: 30px; font-weight: 800; color: var(--green); letter-spacing: -1px;">+37.2%</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 2px; margin-bottom: 12px;">Modified Dietz (금액가중)</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin: 0;">
+              실제로 시장에 투입된 자본을 시간가중하여 계산합니다. <strong style="color: var(--text);">종목 선택의 성과</strong>를 나타냅니다.
+              GIPS는 운용역이 자금 집행 시점을 직접 통제하는 구조(캐피털 콜 방식)에 대해 이 금액가중 방식을 규정하고 있습니다.
+            </p>
+          </div>
+          <div style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">약정 자본 기준 · 보조 수익률</div>
+            <div style="font-size: 30px; font-weight: 800; color: var(--text); letter-spacing: -1px;">+18.5%</div>
+            <div style="font-size: 12px; color: var(--text-dim); margin-top: 2px; margin-bottom: 12px;">단순 수익률 (약정액 $3,000 대비)</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin: 0;">
+              약정 자본 전액을 분모로 계산합니다. 미집행 자금까지 포함하므로 <strong style="color: var(--text);">자본을 놀린 기간의 기회비용</strong>이 반영됩니다.
+              설정 시점에 자본을 맡긴 투자자가 체감하는 수익률에 해당합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="perf-table-wrapper" style="margin-top: 20px;">
+          <table class="perf-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th style="text-align:right;">금액</th>
+                <th style="text-align:right;">비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-medium">약정 자본</td>
+                <td style="text-align:right; white-space:nowrap;">$3,000.00</td>
+                <td style="text-align:right; font-size:13px; color:var(--text-muted);">설정 시 자기자본</td>
+              </tr>
+              <tr>
+                <td class="font-medium">집행 자본</td>
+                <td style="text-align:right; white-space:nowrap;">$2,923.78</td>
+                <td style="text-align:right; font-size:13px; color:var(--text-muted);">집행률 97.5%</td>
+              </tr>
+              <tr>
+                <td class="font-medium">평가 이익</td>
+                <td style="text-align:right; white-space:nowrap; color:var(--green); font-weight:700;">+$556.34</td>
+                <td style="text-align:right; font-size:13px; color:var(--text-muted);">두 기준 공통</td>
+              </tr>
+              <tr>
+                <td class="font-medium">현재 평가액</td>
+                <td style="text-align:right; white-space:nowrap; font-weight:700;">$3,556.34</td>
+                <td style="text-align:right; font-size:13px; color:var(--text-muted);">주식 $3,480.12 + 현금 $76.22</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 16px; padding: 12px 16px; background: var(--bg-elevated); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-dim); line-height: 1.7;">
+          * 두 수익률의 <strong style="color: var(--text-muted);">평가이익($556.34)은 동일</strong>하며 분모만 다릅니다.
+          집행 자본 기준은 시간가중 투입자본 $1,496.06을, 약정 자본 기준은 $3,000 전액을 분모로 사용합니다.
+          1·2분기 주주서한에 공표된 수익률은 모두 집행 자본 기준입니다.
         </div>
       </div>
 
@@ -219,7 +291,9 @@
       </div>
 
       <div class="disclaimer">
-        ※ 벤치마크는 S&P500 지수 및 MSCI 선진국 지수 기준입니다. 수익률은 Modified Dietz 방식으로 계산하였습니다.
+        ※ 벤치마크는 S&P500 지수 및 MSCI 선진국 지수 기준입니다.
+        대표 수익률은 실제 집행된 자본을 시간가중하는 Modified Dietz(금액가중) 방식으로 산출하며, 미집행 약정 자본은 분모에서 제외됩니다.
+        약정 자본 $3,000 전액을 분모로 한 단순 수익률은 별도 표기하였습니다.
         나무늘보 투자조합은 2026년 1월 설정 후 운용 중이며, 2분기 확정 기준일: 2026. 06. 30, 잠정 평가 기준일: 2026. 08. 20.
         과거 수익률은 미래 성과를 보장하지 않으며, 투자원금은 손실될 수 있습니다.
         표시된 수익률은 보수 및 세금 차감 전 기준입니다.
