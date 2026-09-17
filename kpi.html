@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>주주서한 — 나무늘보 투자조합</title>
+  <title>보유종목 KPI — 나무늘보 투자조합</title>
+  <meta name="description" content="나무늘보 투자조합 보유종목(ASML, WST, WM, LSEG)의 핵심 KPI 모니터링.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,8 +19,9 @@
     <div class="nav-links">
       <a href="index.html" class="nav-link">홈</a>
       <a href="performance.html" class="nav-link">운용결과</a>
-      <a href="kpi.html" class="nav-link">KPI 모니터</a>
-      <a href="letter.html" class="nav-link active">주주서한</a>    </div>
+      <a href="kpi.html" class="nav-link active">KPI 모니터</a>
+      <a href="letter.html" class="nav-link">주주서한</a>
+    </div>
     <div class="nav-badge">운용 중</div>
     <button class="nav-hamburger" id="navHamburger" onclick="toggleSidenav()" aria-label="메뉴">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -45,12 +47,13 @@
     <a href="performance.html" class="sidenav-link" onclick="closeSidenav()">
       <span class="sidenav-icon">📊</span><span>운용결과</span>
     </a>
-    <a href="kpi.html" class="sidenav-link" onclick="closeSidenav()">
+    <a href="kpi.html" class="sidenav-link active" onclick="closeSidenav()">
       <span class="sidenav-icon">📈</span><span>KPI 모니터</span>
     </a>
-    <a href="letter.html" class="sidenav-link active" onclick="closeSidenav()">
+    <a href="letter.html" class="sidenav-link" onclick="closeSidenav()">
       <span class="sidenav-icon">✉️</span><span>주주서한</span>
-    </a>  </div>
+    </a>
+  </div>
   <div class="sidenav-footer">
     <div class="nav-badge">운용 중</div>
     <div style="font-size:12px; color:var(--text-dim); margin-top:8px;">Sloth Investment Partnership</div>
@@ -64,9 +67,9 @@
     <div class="container">
       <div class="page-header-inner">
         <div>
-          <div class="page-tag">Shareholder Letters</div>
-          <h1 class="page-title">주주서한</h1>
-          <p class="page-desc">분기별 운용 경과와 투자 아이디어, 시장 환경에 대한 운용역의 생각을 담은 서한입니다.</p>
+          <div class="page-tag">Holdings KPI Monitor</div>
+          <h1 class="page-title">보유종목 KPI</h1>
+          <p class="page-desc">보유 기업의 해자가 실제로 유지되고 있는지 확인하기 위해 추적하는 핵심 지표입니다.</p>
         </div>
       </div>
     </div>
@@ -75,40 +78,32 @@
   <section class="section" style="padding-top: 0;">
     <div class="container">
 
-      <div style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">총 2건</div>
-
-      <div class="report-list">
-
-        <!-- Q2 2026 Letter -->
-        <a href="letters/2026q2.html" class="report-card-link">
-          <div class="report-listing-card">
-            <div class="report-card-meta">
-              <span class="report-card-cat">2026 Q2</span>
-              <span class="report-card-date">2026. 06. 30</span>
-            </div>
-            <div class="report-card-title">나무늘보 투자조합 2026년 2분기 주주서한</div>
-            <div class="report-card-excerpt">YTD +43.4% / Q2 +41.5% (S&P500 +9.6% 대비 +33.8%p 초과). ASML 수혜와 운이 겹친 결과에 대한 솔직한 평가, 기본기 좋은 기업의 3가지 조건 — 반복 매출·경쟁력·가격결정력, WST 심층 분석, 매수 과정 반성과 안전마진 기준 공개.</div>
-            <div style="display:flex; justify-content:flex-end;">
-              <span class="report-card-read">읽기 →</span>
-            </div>
+      <!-- Intro Note -->
+      <div style="background: rgba(61,153,112,0.05); border: 1px solid rgba(61,153,112,0.15); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 28px; display: flex; gap: 14px; align-items: flex-start;">
+        <div style="font-size: 20px; flex-shrink: 0; margin-top: 2px;">🔍</div>
+        <div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;">이 페이지를 보는 법</div>
+          <div style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+            각 종목마다 <strong style="color: var(--text);">우선순위 순으로 KPI</strong>를 정리했습니다. 상위 지표일수록 해자의 핵심에 가깝습니다.
+            아직 공시되지 않았거나 확인되지 않은 값은 <strong style="color: var(--text);">추정하지 않고 「—」로 비워둡니다.</strong>
+            각 지표의 공시 주기와 정량·정성 여부는 배지로 표시했습니다.
           </div>
-        </a>
+        </div>
+      </div>
 
-        <!-- Q1 2026 Letter -->
-        <a href="letters/2026q1.html" class="report-card-link">
-          <div class="report-listing-card">
-            <div class="report-card-meta">
-              <span class="report-card-cat">2026 Q1</span>
-              <span class="report-card-date">2026. 03. 29</span>
-            </div>
-            <div class="report-card-title">나무늘보 투자조합 2026년 1분기 주주서한</div>
-            <div class="report-card-excerpt">YTD -1.8% (S&P500 -7.14% 대비 초과). 이란-미국 호르무즈 충돌 — 완화·기본·악화 3가지 시나리오 분석, WM 유가 민감도 분석, 웨스트 파마슈티컬 서비시즈 투자 배경 소개.</div>
-            <div style="display:flex; justify-content:flex-end;">
-              <span class="report-card-read">읽기 →</span>
-            </div>
-          </div>
-        </a>
+      <!-- Ticker Tabs -->
+      <div class="kpi-tabs-row">
+        <div class="chart-toggle" id="kpiTabs"></div>
+      </div>
 
+      <!-- Panels -->
+      <div id="kpiPanels"></div>
+
+      <div class="disclaimer">
+        ※ 본 페이지는 <strong style="color: var(--text-muted);">정보 제공 목적이며 투자 권유가 아닙니다.</strong>
+        기재된 수치는 각 기업의 공시·실적 발표·컨퍼런스콜에서 인용한 것으로 오류가 있을 수 있으며, 원문을 직접 확인하시기 바랍니다.
+        나무늘보 투자조합은 1인이 운영하는 개인 포트폴리오이며 금융당국의 인가를 받은 투자자문사가 아닙니다.
+        투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
       </div>
     </div>
   </section>
@@ -121,14 +116,15 @@
             <span style="font-size:18px;">🦥</span>
             나무늘보 투자조합
           </div>
-          <div class="footer-text" style="margin-top:8px;">
+          <div class="footer-text" style="margin-top: 8px;">
             Sloth Investment Partnership · 설정일 2026.01 · 느리게, 단단하게
           </div>
         </div>
         <div class="footer-links">
           <a href="performance.html" class="footer-link">운용결과</a>
           <a href="kpi.html" class="footer-link">KPI 모니터</a>
-          <a href="letter.html" class="footer-link">주주서한</a>        </div>
+          <a href="letter.html" class="footer-link">주주서한</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -136,5 +132,7 @@
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/kpi-data.js"></script>
+<script src="js/kpi.js"></script>
 </body>
 </html>
