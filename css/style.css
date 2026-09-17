@@ -1820,3 +1820,220 @@ input, textarea, select {
   .article-container { padding: 24px 16px 60px; }
   .report-listing-card { padding: 18px 20px; }
 }
+
+/* ===========================
+   보유종목 KPI 모니터 (kpi.html)
+   =========================== */
+.kpi-tabs-row {
+  display: flex;
+  margin-bottom: 24px;
+}
+.kpi-tabs-row .chart-toggle {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.kpi-tabs-row .chart-toggle button {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.kpi-panel {
+  display: none;
+}
+.kpi-panel--active {
+  display: block;
+}
+
+/* 해자 메모 */
+.kpi-moat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue-light);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+.kpi-moat-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.kpi-moat-ticker {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.kpi-moat-name {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+.kpi-updated {
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.kpi-moat-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* KPI 표 — 셀 내 줄바꿈 허용, 좁은 화면에서는 래퍼 안에서만 가로 스크롤 */
+.kpi-table {
+  min-width: 760px;
+}
+.kpi-table td {
+  white-space: normal;
+  vertical-align: top;
+}
+.kpi-cell-rank {
+  width: 52px;
+}
+.kpi-cell-name {
+  min-width: 200px;
+}
+.kpi-cell-value {
+  min-width: 180px;
+}
+.kpi-cell-source {
+  min-width: 140px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.kpi-cell-badges {
+  min-width: 132px;
+}
+
+.kpi-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.kpi-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+}
+.kpi-why {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-top: 3px;
+}
+.kpi-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.6;
+}
+.kpi-value--empty {
+  color: var(--text-dim);
+  font-weight: 500;
+}
+.kpi-asof {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* 배지 */
+.kpi-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.kpi-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.kpi-badge--cadence {
+  background: rgba(96, 165, 250, 0.1);
+  border-color: rgba(96, 165, 250, 0.22);
+  color: #8ab9fb;
+}
+.kpi-badge--quant {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.22);
+  color: var(--green);
+}
+.kpi-badge--qual {
+  background: rgba(167, 139, 250, 0.1);
+  border-color: rgba(167, 139, 250, 0.22);
+  color: var(--purple);
+}
+
+/* 주의사항 */
+.kpi-caution {
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.kpi-caution-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+.kpi-caution-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kpi-caution-list li {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* 모바일 표 스크롤 힌트 — 데스크톱에서는 숨김 */
+.kpi-scroll-hint {
+  display: none;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .kpi-scroll-hint {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-moat {
+    padding: 16px 18px;
+  }
+  .kpi-moat-name {
+    margin-left: 0;
+    display: block;
+    margin-top: 2px;
+  }
+  .kpi-caution {
+    padding: 14px 16px;
+  }
+}
